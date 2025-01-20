@@ -10,12 +10,13 @@ import { ref, provide } from 'vue'
 
 import { useForm } from 'vee-validate'
 
-const { onSubmit, initialValues } = defineProps<{
+const { onSubmit, initialValues, clearOnSubmit } = defineProps<{
   onSubmit: (values: Record<string, any>) => void
   initialValues: Record<string, any>
+  clearOnSubmit?: boolean
 }>()
 
-const { handleSubmit, defineField } = useForm({
+const { handleSubmit, defineField, resetForm } = useForm({
   initialValues,
 })
 
@@ -39,5 +40,8 @@ provide('form', {
 
 const onSubmitForm = handleSubmit((values) => {
   onSubmit(values)
+  if (clearOnSubmit) {
+    resetForm()
+  }
 })
 </script>

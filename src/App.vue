@@ -18,5 +18,6 @@ const form = {
   onSubmit: (values: Record<string, any>) => {
     console.log(values)
   },
+  clearOnSubmit: true,
 }
 </script>
