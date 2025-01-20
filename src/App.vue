@@ -13,7 +13,7 @@ import Input from './components/Form/fields/Input.vue'
 
 const form = {
   initialValues: {
-    name: '',
+    name: 'Max',
   },
   onSubmit: (values: Record<string, any>) => {
     console.log(values)

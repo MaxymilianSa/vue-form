@@ -12,5 +12,5 @@ const { name } = defineProps<{
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const data: any = inject('form')
 
-const [value, attributes] = data.value.values[name]
+const { value, attributes } = data.getField(name)
 </script>

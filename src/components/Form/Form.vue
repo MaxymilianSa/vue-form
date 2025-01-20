@@ -19,13 +19,23 @@ const { handleSubmit, defineField } = useForm({
   initialValues,
 })
 
-const data = ref({
+const data = ref<{
+  values: Record<string, [any, Record<string, any>]>
+}>({
   values: Object.entries(initialValues).reduce(
     (prev, [name]) => ({ ...prev, [name]: defineField(name) }),
     {},
   ),
 })
-provide('form', data)
+
+const getField = (name: string) => {
+  return { value: data.value.values[name][0], attributes: data.value.values[name][1] }
+}
+
+provide('form', {
+  ...data,
+  getField,
+})
 
 const onSubmitForm = handleSubmit((values) => {
   onSubmit(values)
